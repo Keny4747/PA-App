@@ -1,1 +1,33 @@
-<p>por-capital works!</p>
+<h2>Por {{title}}:</h2>
+<hr>
+
+<!-- Sección Input -->
+<div class="row">
+  <div class="col">
+    <app-pais-input
+    [title]="title"
+    (onEnter)="buscar($event)"
+    (onDebounce)="sugerencias($event)"
+    >
+  </app-pais-input>
+  </div>
+</div>
+<!-- Fin sección Input -->
+
+<hr>
+<!-- Mensaje Error -->
+<div  *ngIf="hayError"
+class="alert alert-danger">
+  No se encontró nada con el término : {{termino}}
+</div>
+<!-- Fin mensaje error -->
+
+<div *ngIf="paises.length>0" class="row">
+  <div class="col">
+    <!-- Tabla Resutados -->
+    <app-pais-tabla
+    [paises]="paises">
+    </app-pais-tabla>
+    <!-- Fin Tabla Resultados -->
+  </div>
+</div>

@@ -1,16 +1,14 @@
-<h2>Por paìs:</h2>
+<h2>Por {{title}}:</h2>
 <hr>
 
 <!-- Sección Input -->
 <div class="row">
   <div class="col">
-<!--     <form (ngSubmit)="buscar()" action="" autocomplete="off">
-      <input type="text"
-      name="termino"
-      class="form-control"
-      [(ngModel)]="termino"
-      placeholder="Buscar paìs..."/>
-    </form> -->
+    <app-pais-input
+    [title]="title"
+    (onEnter)="buscar($event)"
+    (onDebounce)="sugerencias($event)">
+  </app-pais-input>
   </div>
 </div>
 <!-- Fin sección Input -->
