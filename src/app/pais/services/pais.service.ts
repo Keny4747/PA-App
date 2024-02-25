@@ -31,11 +31,10 @@ export class PaisService {
     return this.http.get<Country[]>(url);
   }
 
+  getPaisPorCodigo ( code: string ): Observable<Country>{
 
-  getPaisPorAlpha(id:string):Observable<Country>{
-    const url = `${this.apiUrl}/alpha/${id}`;
-    return this.http.get<Country>(url);
+    const ulr = `${ this.apiUrl }/alpha/${code}`;
+
+    return this.http.get<Country>(ulr)
   }
-
-
 }

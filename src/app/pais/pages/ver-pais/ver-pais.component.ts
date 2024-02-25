@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap, tap } from 'rxjs/operators';
 
 import { Country } from '../../interfaces/pais.interface';
@@ -12,28 +12,32 @@ import { PaisService } from '../../services/pais.service';
 export class VerPaisComponent implements OnInit{
 
 
-  pais!: Country;
+   pais!: Country;
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private paisService: PaisService
-    ) { }
+  ) {
 
-    ngOnInit(): void {
-      this.activatedRoute.params
-        .pipe(
-          switchMap(({ id }) => this.paisService.getPaisPorAlpha(id)),
-          tap(pais => console.log('Datos del país:', pais)) // Agrega este console.log para verificar los datos recibidos
-        )
-        .subscribe(
-          pais => {
-            console.log('País asignado:', pais); // Agrega este console.log para verificar si el país se asigna correctamente
-            this.pais = pais;
-          },
-          error => console.error('Error al obtener el país:', error)
-        );
-    }
+  }
 
+
+
+  /* En el ngOnInit se captura el parámetro de la Url, en este caso el /paises:id (ver:pais.routing) */
+
+  ngOnInit(): void {
+
+    this.activatedRoute.params
+    .pipe(
+      switchMap( ({id}) => this.paisService.getPaisPorCodigo( id )),
+      tap(console.log)  //recibe el producto del observable y lo imprime en la consola   //tap(resp => console.log(resp))
+    )
+    .subscribe( (pais: Country[])=> this.pais = pais[0] )
+
+    console.log('pais', this.pais)
+
+  }
 
 
 }

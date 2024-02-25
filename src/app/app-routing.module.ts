@@ -21,9 +21,9 @@ const routes: Routes =[
     component:PorCapitalComponent
   },
   {
-    path:'pais/:id',
-    component:VerPaisComponent
-  },
+    path: 'pais/:id',
+    component: VerPaisComponent,
+},
   {
     path:'**',
     redirectTo:''
