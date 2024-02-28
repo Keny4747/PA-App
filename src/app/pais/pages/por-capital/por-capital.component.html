@@ -1,18 +1,25 @@
-<h2>Por {{title}}:</h2>
-<hr>
 
-<!-- Sección Input -->
-<div class="row">
-  <div class="col">
-    <app-pais-input
-    [title]="title"
-    (onEnter)="buscar($event)"
-    (onDebounce)="sugerencias($event)"
-    >
-  </app-pais-input>
+<div class="animate__animated animate__fadeInLeft">
+  <h2>Por {{title}}:</h2>
+  <hr>
+
+  <!-- Sección Input -->
+  <div class="row">
+    <div class="col">
+      <app-pais-input
+      [title]="title"
+      (onEnter)="buscar($event)"
+      (onDebounce)="sugerencias($event)"
+      >
+    </app-pais-input>
+    </div>
   </div>
+  <!-- Fin sección Input -->
+
+
+
+
 </div>
-<!-- Fin sección Input -->
 
 <hr>
 <!-- Mensaje Error -->

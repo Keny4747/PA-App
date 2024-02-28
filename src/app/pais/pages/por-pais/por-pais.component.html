@@ -13,6 +13,18 @@
 </div>
 <!-- Fin sección Input -->
 
+  <!-- Seccion sugerencias pais -->
+  <ul class="list-group">
+    <li *ngFor="let paisSugerido of paisesSugeridos"
+    class="list-group-item list-group-item-action"
+    (click)="buscar(paisSugerido.name.common)"
+
+    >
+      {{paisSugerido.name.common}}
+    </li>
+  </ul>
+  <!-- Sin seccion sugerencias pais -->
+
 <hr>
 <!-- Mensaje Error -->
 <div  *ngIf="hayError"
