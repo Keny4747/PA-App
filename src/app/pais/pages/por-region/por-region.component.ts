@@ -4,21 +4,34 @@ import { Country } from '../../interfaces/pais.interface';
 
 @Component({
   selector: 'app-por-region',
-  templateUrl: './por-region.component.html'
+  templateUrl: './por-region.component.html',
+  styles:[
+    `button {
+      margin-right: 5px;
+    }`
+  ]
 })
 export class PorRegionComponent {
 
   title:string='región';
+
+  regiones: string [] = ['africa','americas','asia', 'europe', 'oceania'];
+  regionActiva:string ='';
 
   termino:string='';
   hayError:boolean=false;
   paises:Country[]=[];
   constructor(private paisService:PaisService){}
 
+  getClaseCSS (region:string):string {
+    return (region === this.regionActiva) ? 'btn btn-primary': 'btn btn-outline-primary';
+  }
 
-  buscar(termino:string){
+  activarRegion(region:string){
+    this.regionActiva=region;
+
     this.hayError=false;
-    this.termino=termino;
+    this.termino=region;
 
     this.paisService.buscarRegion(this.termino)
     .subscribe((paises) =>{
@@ -29,6 +42,7 @@ export class PorRegionComponent {
       this.hayError=true;
     }
     );
+
 
   }
 
